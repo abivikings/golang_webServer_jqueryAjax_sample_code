@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript">
+		    $(document).ready(function () {
+		        $.getJSON('http://localhost:9000/people', function (schoolData) {
+		            var tr;
+		            for (var i = 0; i < schoolData.length; i++) {
+		                tr = $('<tr/>');
+		                tr.append("<td>" + schoolData[i].id + "</td>");
+		                tr.append("<td>" + schoolData[i].name + "</td>");
+		                tr.append('<td><button type="button" class="btn btn-primary">Details</button></td>');
+            			tr.append('<td><button type="button" class="btn btn-success">Edit</button></td>');
+            			tr.append('<td><button type="button" class="btn btn-success">Delete</button></td>');
+		                $('table').append(tr);
+		            }
+		        });
+		    });
+		</script>
+	</head>
+	<body>
+		<button>Add</button>
+		<table class="table">
+		</table>
+	</body>
+</html>
