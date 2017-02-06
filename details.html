@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript">
+		    $(document).ready(function () {
+		    	var id = getParameterByName('id');
+		        $.getJSON("http://localhost:9000/people/"+id, function (data) {
+		            console.debug(data);
+		            $('#city').html(data["address"].city);
+		            $('#country').html(data["address"].country);
+		            $('#id').html(data.id);
+		            $('#name').html(data.name);
+		        });
+		    });
+		    function getParameterByName(name) {
+			    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+			    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+			}
+		</script>
+	</head>
+	<body>
+		Id : <span id="id"></span><br><br>
+		Name : <span id="name"></span><br><br>
+		Address : <span id="city"> , </span> <span id="country"></span>		
+	</body>
+</html>
