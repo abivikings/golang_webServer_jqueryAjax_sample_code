@@ -5,12 +5,10 @@ import (
     "log"
     "net/http"
     "github.com/gorilla/mux"
-	"encoding/json"
-    "text/template"
+    "encoding/json"
 )
-var tlp *template.Template
-var people []Person
 
+var people []Person
 
 type Person struct {
     ID string `json:"id,omitempty"`
