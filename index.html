@@ -4,20 +4,27 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script type="text/javascript" language="javascript">
 		    $(document).ready(function () {
-		        $.getJSON('http://localhost:9000/people', function (userinfo) {
+		    	var success = false;
+		        $.getJSON('http://localhost:9000/people', function (schoolData) {
 		            var tr;
-		            for (var i = 0; i < userinfo.length; i++) {
+		            success = true;
+		            for (var i = 0; i < schoolData.length; i++) {
 		                tr = $('<tr/>');
-		                tr.append("<td>" + userinfo[i].id + "</td>");
-		                tr.append("<td>" + userinfo[i].name + "</td>");
-				tr.append("<td>" + userinfo[i].address.city + "</td>");
-				tr.append("<td>" + userinfo[i].address.country + "</td>");
-		                tr.append('<td><button type="button" class="btn btn-primary">Details</button></td>');
+		                tr.append("<td>" + schoolData[i].id + "</td>");
+		                tr.append("<td>" + schoolData[i].name + "</td>");
+		                tr.append("<td><a href='details.html?id="+ schoolData[i].id +"'>Details</a></td>");
             			tr.append('<td><button type="button" class="btn btn-success">Edit</button></td>');
             			tr.append('<td><button type="button" class="btn btn-success">Delete</button></td>');
 		                $('table').append(tr);
 		            }
 		        });
+		        setTimeout(function() {
+			    if (!success)
+			    {
+				// Handle error accordingly
+				alert("Server Not Found"); // string was "Houston, we have a problem."
+			    }
+			}, 1000);
 		    });
 		</script>
 	</head>
